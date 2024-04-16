@@ -1,0 +1,13 @@
+This is the priority order of files loaded as the default page when the server is accessed:
+Default.htm
+Default.asp
+index.htm
+index.html
+iistart.htm
+default.aspx
+index.php
+
+So if I want index.php to be the first file shown when the server is accessed, i need to move it to the top of the list on this application:
+Internet Information Services (IIS) Manager
+go to IIS section of the D18TH0T2 Home
+Click the "Default Document" icon
