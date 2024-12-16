@@ -1,0 +1,28 @@
+name: Deploy to Site
+
+on:
+  push:
+    branches:
+      - main  # Trigger the action when changes are pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H apimba.bilgeworth.com >> ~/.ssh/known_hosts
+
+    - name: Deploy to Apache server
+      run: |
+        rsync -avz --delete \
+          --exclude '.git/' \
+          ./ \
+          cpanel_user@apimba.bilgeworth.com:/path/to/apache/site/
