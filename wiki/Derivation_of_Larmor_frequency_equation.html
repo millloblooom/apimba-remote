@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html>
+
+<html class="client-nojs" dir="ltr" lang="en">
+  <meta content="text/html;charset=utf-8" http-equiv="content-type" />
+  <head>
+    <meta charset="utf-8" />
+    <title>Derivation of Larmor frequency equation - apimba</title>
+    <script>
+      document.documentElement.className = "client-js";
+      RLCONF = {
+        wgCanonicalNamespace: "",
+        wgCanonicalSpecialPageName: !1,
+        wgNamespaceNumber: 0,
+        wgPageName: "Derivation_of_Larmor_frequency_equation",
+        wgTitle: "Derivation of Larmor frequency equation",
+        wgCurRevisionId: 471,
+        wgRevisionId: 471,
+        wgArticleId: 52,
+        wgIsArticle: !0,
+        wgIsRedirect: !1,
+        wgAction: "view",
+        wgUserName: null,
+        wgUserGroups: ["*"],
+        wgCategories: [],
+        wgBreakFrames: !1,
+        wgPageContentLanguage: "en",
+        wgPageContentModel: "wikitext",
+        wgSeparatorTransformTable: ["", ""],
+        wgDigitTransformTable: ["", ""],
+        wgDefaultDateFormat: "dmy",
+        wgMonthNames: [
+          "",
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ],
+        wgMonthNamesShort: [
+          "",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
+        wgRelevantPageName: "Derivation_of_Larmor_frequency_equation",
+        wgRelevantArticleId: 52,
+        wgRequestId: "bc5d4d4d6c291c54fbc9ad4c",
+        wgCSPNonce: !1,
+        wgIsProbablyEditable: !1,
+        wgRelevantPageIsProbablyEditable: !1,
+        wgRestrictionEdit: [],
+        wgRestrictionMove: [],
+      };
+      RLSTATE = {
+        "site.styles": "ready",
+        noscript: "ready",
+        "user.styles": "ready",
+        user: "ready",
+        "user.options": "ready",
+        "user.tokens": "loading",
+        "mediawiki.legacy.shared": "ready",
+        "mediawiki.legacy.commonPrint": "ready",
+        "mediawiki.skinning.interface": "ready",
+        "skins.vector.styles": "ready",
+      };
+      RLPAGEMODULES = [
+        "site",
+        "mediawiki.page.startup",
+        "mediawiki.page.ready",
+        "mediawiki.searchSuggest",
+        "skins.vector.js",
+      ];
+    </script>
+    <script>
+      (RLQ = window.RLQ || []).push(function () {
+        mw.loader.implement(
+          "user.tokens@tffin",
+          function ($, jQuery, require, module) {
+            /*@nomin*/ mw.user.tokens.set({
+              editToken: "+\\",
+              patrolToken: "+\\",
+              watchToken: "+\\",
+              csrfToken: "+\\",
+            });
+          }
+        );
+      });
+    </script>
+    <link
+      href="/assets/css/load26d3.css?lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cskins.vector.styles&amp;only=styles&amp;skin=vector"
+      rel="stylesheet"
+    />
+    <script
+      async=""
+      src="/assets/js/load52c0.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"
+    ></script>
+    <meta content="MediaWiki 1.34.0" name="generator" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="/wiki/favicon.ico" rel="shortcut icon" />
+    <link
+      href="/wiki/opensearch_desc.php"
+      rel="search"
+      title="apimba (en)"
+      type="application/opensearchdescription+xml"
+    />
+    <link
+      href="/wiki/api.php?action=rsd"
+      rel="EditURI"
+      type="application/rsd+xml"
+    />
+    <link
+      href="/wiki/Special:RecentChanges&amp;feed=atom"
+      rel="alternate"
+      title="apimba Atom feed"
+      type="application/atom+xml"
+    />
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-01NDZHCJMM"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-01NDZHCJMM");
+    </script>
+  </head>
+  <body
+    class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Derivation_of_Larmor_frequency_equation rootpage-Derivation_of_Larmor_frequency_equation skin-vector action-view"
+  >
+    <div class="noprint" id="mw-page-base"></div>
+    <div class="noprint" id="mw-head-base"></div>
+    <div class="mw-body" id="content" role="main">
+      <a id="top"></a>
+      <div class="mw-indicators mw-body-content"></div>
+      <h1 class="firstHeading" id="firstHeading" lang="en">
+        Derivation of Larmor frequency equation
+      </h1>
+      <div class="mw-body-content" id="bodyContent">
+        <div class="noprint" id="siteSub">From apimba</div>
+        <div id="contentSub">
+          <div class="mw-revision warningbox">
+            <div id="mw-revision-info">
+              Revision as of 15:33, 25 March 2020 by
+              <a
+                class="mw-userlink"
+                href="/wiki/User:Milllo"
+                title="User:Milllo"
+                ><bdi>Milllo</bdi></a
+              >
+              <span class="mw-usertoollinks"
+                >(<a
+                  class="new mw-usertoollinks-talk"
+                  href="/wiki/User_talk:Milllo&amp;action=edit&amp;redlink=1"
+                  title="User talk:Milllo (page does not exist)"
+                  >talk</a
+                >
+                |
+                <a
+                  class="mw-usertoollinks-contribs"
+                  href="/wiki/Special:Contributions/Milllo"
+                  title="Special:Contributions/Milllo"
+                  >contribs</a
+                >)</span
+              >
+            </div>
+            <div id="mw-revision-nav">
+              (<a
+                href="/wiki/Derivation_of_Larmor_frequency_equation&amp;diff=prev&amp;oldid=471"
+                title="Derivation of Larmor frequency equation"
+                >diff</a
+              >)
+              <a
+                href="/wiki/Derivation_of_Larmor_frequency_equation&amp;direction=prev&amp;oldid=471"
+                title="Derivation of Larmor frequency equation"
+                >← Older revision</a
+              >
+              | Latest revision (diff) | Newer revision → (diff)
+            </div>
+          </div>
+        </div>
+        <div id="jump-to-nav"></div>
+        <a class="mw-jump-link" href="/">Jump to navigation</a>
+        <a class="mw-jump-link" href="/">Jump to search</a>
+        <div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+          <div class="mw-parser-output">
+            <p>In the following, bold letters are vectors.</p>
+            <p>
+              For any rotating body the rate of change of the angular momentum
+              <b>J</b> equals the applied torque <b>T</b>
+            </p>
+            <p>or <b>T</b> = <i>d</i><b>J</b>/<i>dt</i></p>
+            <p>
+              The torque resulting from subjecting a magnetic moment <b>m</b> to
+              a magnetic field <b>B</b> is <b>m</b>cross<b>B</b> =
+              mB<i>sin</i>φ.
+            </p>
+            <p>
+              Note as an example the precession of a gyroscope. The earth's
+              gravitational attraction applies a force or torque to the
+              gyroscope in the vertical direction, and the angular momentum
+              vector along the axis of the gyroscope rotates slowly about a
+              vertical line through the pivot. In the place of the gyroscope
+              imagine a sphere spinning around the axis and with its center on
+              the pivot of the gyroscope, and along the axis of the gyroscope
+              two oppositely directed vectors both originated in the center of
+              the sphere, upwards <b>J</b> and downwards <b>m</b>. Replace the
+              gravity with a magnetic flux density B.
+            </p>
+            <p>
+              <i>d</i><b>J</b>/<i>dt</i> represents the linear velocity of the
+              pike of the arrow <b>J</b> along a circle whose radius is
+              J<i>sin</i>φ where φ is the angle between <b>J</b> and the
+              vertical. Hence the angular velocity of the rotation of the spin
+              is:
+            </p>
+            <p>
+              ω=2πf =|<i>d</i
+              ><b>J</b
+              >|/(J*<i>sin</i>φ)<i>dt</i>=|<b>T</b>|/(J*<i>sin</i>φ)=|<b>m</b>cross<b>B</b>|/J<i>sin</i>φ=mB<i>sin</i>φ/J<i>sin</i>φ=(m/J)*B=<span
+                style="font-family: symbol"
+                >g</span
+              >*B.
+            </p>
+            <p>
+              <br />
+              Next, the constant 2π is included in the definition of
+              <span style="font-family: symbol">g</span>.
+            </p>
+            <p>
+              Consequently, frequency =<span style="font-family: symbol">g</span
+              >*B<sub>0</sub>
+            </p>
+          </div>
+        </div>
+        <div class="printfooter">
+          Retrieved from "<a
+            dir="ltr"
+            href="/wiki/Derivation_of_Larmor_frequency_equation&amp;oldid=471"
+            >/wiki/Derivation_of_Larmor_frequency_equation&amp;oldid=471</a
+          >"
+        </div>
+        <div
+          class="catlinks catlinks-allhidden"
+          data-mw="interface"
+          id="catlinks"
+        ></div>
+        <div class="visualClear"></div>
+      </div>
+    </div>
+    <div id="mw-navigation">
+      <h2>Navigation menu</h2>
+      <div id="mw-head">
+        <div
+          aria-labelledby="p-personal-label"
+          class="emptyPortlet"
+          id="p-personal"
+          role="navigation"
+        >
+          <h3 id="p-personal-label">Personal tools</h3>
+          <ul></ul>
+        </div>
+        <div id="left-navigation">
+          <div
+            aria-labelledby="p-namespaces-label"
+            class="vectorTabs"
+            id="p-namespaces"
+            role="navigation"
+          >
+            <h3 id="p-namespaces-label">Namespaces</h3>
+            <ul>
+              <li class="selected" id="ca-nstab-main">
+                <span
+                  ><a
+                    accesskey="c"
+                    href="/wiki/Derivation_of_Larmor_frequency_equation"
+                    title="View the content page [c]"
+                    >Page</a
+                  ></span
+                >
+              </li>
+              <li class="new" id="ca-talk">
+                <span
+                  ><a
+                    accesskey="t"
+                    href="/wiki/Talk:Derivation_of_Larmor_frequency_equation&amp;action=edit&amp;redlink=1"
+                    rel="discussion"
+                    title="Discussion about the content page (page does not exist) [t]"
+                    >Discussion</a
+                  ></span
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            aria-labelledby="p-variants-label"
+            class="vectorMenu emptyPortlet"
+            id="p-variants"
+            role="navigation"
+          >
+            <input
+              aria-labelledby="p-variants-label"
+              class="vectorMenuCheckbox"
+              type="checkbox"
+            />
+            <h3 id="p-variants-label">
+              <span>Variants</span>
+            </h3>
+            <ul class="menu"></ul>
+          </div>
+        </div>
+        <div id="right-navigation">
+          <div
+            aria-labelledby="p-views-label"
+            class="vectorTabs"
+            id="p-views"
+            role="navigation"
+          >
+            <h3 id="p-views-label">Views</h3>
+            <ul>
+              <li class="collapsible selected" id="ca-view">
+                <span
+                  ><a
+                    href="/wiki/Derivation_of_Larmor_frequency_equation"
+                    >Read</a
+                  ></span
+                >
+              </li>
+              <li class="collapsible" id="ca-viewsource">
+                <span
+                  ><a
+                    accesskey="e"
+                    href="/wiki/Derivation_of_Larmor_frequency_equation&amp;action=edit"
+                    title="This page is protected.
+You can view its source [e]"
+                    >View source</a
+                  ></span
+                >
+              </li>
+              <li class="collapsible" id="ca-history">
+                <span
+                  ><a
+                    accesskey="h"
+                    href="/wiki/Derivation_of_Larmor_frequency_equation&amp;action=history"
+                    title="Past revisions of this page [h]"
+                    >View history</a
+                  ></span
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            aria-labelledby="p-cactions-label"
+            class="vectorMenu emptyPortlet"
+            id="p-cactions"
+            role="navigation"
+          >
+            <input
+              aria-labelledby="p-cactions-label"
+              class="vectorMenuCheckbox"
+              type="checkbox"
+            />
+            <h3 id="p-cactions-label"><span>More</span></h3>
+            <ul class="menu"></ul>
+          </div>
+          <div id="p-search" role="search">
+            <h3>
+              <label for="searchInput">Search</label>
+            </h3>
+            <form action="/wiki/index.php" id="searchform">
+              <div id="simpleSearch">
+                <input
+                  accesskey="f"
+                  id="searchInput"
+                  name="search"
+                  placeholder="Search apimba"
+                  title="Search apimba [f]"
+                  type="search"
+                /><input
+                  name="title"
+                  type="hidden"
+                  value="Special:Search"
+                /><input
+                  class="searchButton mw-fallbackSearchButton"
+                  id="mw-searchButton"
+                  name="fulltext"
+                  title="Search the pages for this text"
+                  type="submit"
+                  value="Search"
+                /><input
+                  class="searchButton"
+                  id="searchButton"
+                  name="go"
+                  title="Go to a page with this exact name if it exists"
+                  type="submit"
+                  value="Go"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="mw-panel">
+        <div id="p-logo" role="banner">
+          <a
+            class="mw-wiki-logo"
+            href="/wiki/Main_Page"
+            title="Visit the main page"
+          ></a>
+        </div>
+        <div
+          aria-labelledby="p-navigation-label"
+          class="portal"
+          id="p-navigation"
+          role="navigation"
+        >
+          <h3 id="p-navigation-label">Navigation</h3>
+          <div class="body">
+            <ul>
+              <li id="n-mainpage-description">
+                <a
+                  accesskey="z"
+                  href="/wiki/Main_Page"
+                  title="Visit the main page [z]"
+                  >Main page</a
+                >
+              </li>
+              <li id="n-recentchanges">
+                <a
+                  accesskey="r"
+                  href="/wiki/Special:RecentChanges"
+                  title="A list of recent changes in the wiki [r]"
+                  >Recent changes</a
+                >
+              </li>
+              <li id="n-randompage">
+                <a
+                  accesskey="x"
+                  href="/wiki/Special:Random"
+                  title="Load a random page [x]"
+                  >Random page</a
+                >
+              </li>
+              <li id="n-help-mediawiki">
+                <a
+                  href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"
+                  >Help about MediaWiki</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          aria-labelledby="p-tb-label"
+          class="portal"
+          id="p-tb"
+          role="navigation"
+        >
+          <h3 id="p-tb-label">Tools</h3>
+          <div class="body">
+            <ul>
+              <li id="t-whatlinkshere">
+                <a
+                  accesskey="j"
+                  href="/wiki/Special:WhatLinksHere/Derivation_of_Larmor_frequency_equation"
+                  title="A list of all wiki pages that link here [j]"
+                  >What links here</a
+                >
+              </li>
+              <li id="t-recentchangeslinked">
+                <a
+                  accesskey="k"
+                  href="/wiki/Special:RecentChangesLinked/Derivation_of_Larmor_frequency_equation"
+                  rel="nofollow"
+                  title="Recent changes in pages linked from this page [k]"
+                  >Related changes</a
+                >
+              </li>
+              <li id="t-specialpages">
+                <a
+                  accesskey="q"
+                  href="/wiki/Special:SpecialPages"
+                  title="A list of all special pages [q]"
+                  >Special pages</a
+                >
+              </li>
+              <li id="t-print">
+                <a
+                  accesskey="p"
+                  href="/wiki/Derivation_of_Larmor_frequency_equation&amp;oldid=471&amp;printable=yes"
+                  rel="alternate"
+                  title="Printable version of this page [p]"
+                  >Printable version</a
+                >
+              </li>
+              <li id="t-permalink">
+                <a
+                  href="/wiki/Derivation_of_Larmor_frequency_equation&amp;oldid=471"
+                  title="Permanent link to this revision of the page"
+                  >Permanent link</a
+                >
+              </li>
+              <li id="t-info">
+                <a
+                  href="/wiki/Derivation_of_Larmor_frequency_equation&amp;action=info"
+                  title="More information about this page"
+                  >Page information</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" role="contentinfo">
+      <ul id="footer-info">
+        <li id="footer-info-lastmod">
+          This page was last edited on 25 March 2020, at 15:33.
+        </li>
+      </ul>
+      <ul id="footer-places">
+        <li id="footer-places-privacy">
+          <a
+            href="/wiki/Apimba:Privacy_policy"
+            title="Apimba:Privacy policy"
+            >Privacy policy</a
+          >
+        </li>
+        <li id="footer-places-about">
+          <a href="/wiki/Apimba:About" title="Apimba:About"
+            >About apimba</a
+          >
+        </li>
+        <li id="footer-places-disclaimer">
+          <a
+            href="/wiki/Apimba:General_disclaimer"
+            title="Apimba:General disclaimer"
+            >Disclaimers</a
+          >
+        </li>
+      </ul>
+      <div style="clear: both"></div>
+    </div>
+    <script>
+      (RLQ = window.RLQ || []).push(function () {
+        mw.config.set({
+          wgPageParseReport: {
+            limitreport: {
+              cputime: "0.016",
+              walltime: "0.013",
+              ppvisitednodes: { value: 4, limit: 1000000 },
+              ppgeneratednodes: { value: 0, limit: 1000000 },
+              postexpandincludesize: { value: 0, limit: 2097152 },
+              templateargumentsize: { value: 0, limit: 2097152 },
+              expansiondepth: { value: 1, limit: 40 },
+              expensivefunctioncount: { value: 0, limit: 100 },
+              "unstrip-depth": { value: 0, limit: 20 },
+              "unstrip-size": { value: 0, limit: 5000000 },
+              timingprofile: ["100.00%    0.000      1 -total"],
+            },
+            cachereport: {
+              timestamp: "20241211174806",
+              ttl: 86400,
+              transientcontent: false,
+            },
+          },
+        });
+        mw.config.set({ wgBackendResponseTime: 247 });
+      });
+    </script>
+  </body>
+</html>
