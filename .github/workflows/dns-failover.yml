@@ -27,7 +27,7 @@ jobs:
             echo "❌ Home server is DOWN"
           fi
 
-      - name: Switch DNS to Home server (if up)
+      - name: Switch to Home server (if up)
         if: env.status == 'up'
         uses: cloudflare/cloudflare-action@v2
         with:
@@ -40,7 +40,7 @@ jobs:
           ttl: 300
           proxied: false
 
-      - name: Switch DNS to GitHub Pages (if down)
+      - name: Switch to GitHub Pages (if down) - IP 1
         if: env.status == 'down'
         uses: cloudflare/cloudflare-action@v2
         with:
@@ -49,7 +49,45 @@ jobs:
           zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           type: A
           name: "@"
-          content: "185.199.108.153"
+          content: 185.199.108.153
           ttl: 300
           proxied: false
-        # (The action will be called 4 times for the 4 IPs — we’ll handle the other 3 in the next steps)
+
+      - name: Switch to GitHub Pages (if down) - IP 2
+        if: env.status == 'down'
+        uses: cloudflare/cloudflare-action@v2
+        with:
+          command: dns
+          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          type: A
+          name: "@"
+          content: 185.199.109.153
+          ttl: 300
+          proxied: false
+
+      - name: Switch to GitHub Pages (if down) - IP 3
+        if: env.status == 'down'
+        uses: cloudflare/cloudflare-action@v2
+        with:
+          command: dns
+          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          type: A
+          name: "@"
+          content: 185.199.110.153
+          ttl: 300
+          proxied: false
+
+      - name: Switch to GitHub Pages (if down) - IP 4
+        if: env.status == 'down'
+        uses: cloudflare/cloudflare-action@v2
+        with:
+          command: dns
+          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          type: A
+          name: "@"
+          content: 185.199.111.153
+          ttl: 300
+          proxied: false
