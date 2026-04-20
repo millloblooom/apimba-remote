@@ -2,8 +2,8 @@ name: DNS Failover (Home ↔ GitHub)
 
 on:
   schedule:
-    - cron: '0 3 * * *'      # Runs once a day at 3 AM UTC (change if you want)
-  workflow_dispatch:         # Lets you test it manually
+    - cron: '0 3 * * *'      # Once a day at 3 AM UTC — change if you want (e.g. every 6 hours: '0 */6 * * *')
+  workflow_dispatch:         # Allows manual run from GitHub
 
 jobs:
   failover:
@@ -27,67 +27,20 @@ jobs:
             echo "❌ Home server is DOWN"
           fi
 
-      - name: Switch to Home server (if up)
+      - name: Switch DNS to Home server (if up)
         if: env.status == 'up'
-        uses: cloudflare/cloudflare-action@v2
-        with:
-          command: dns
-          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          type: A
-          name: "@"
-          content: ${{ env.home_ip }}
-          ttl: 300
-          proxied: false
+        run: |
+          curl -X PATCH "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '[{"type":"A","name":"@","content":"'"${{ env.home_ip }}"'","ttl":300,"proxied":false}]'
 
-      - name: Switch to GitHub Pages (if down) - IP 1
+      - name: Switch DNS to GitHub Pages (if down)
         if: env.status == 'down'
-        uses: cloudflare/cloudflare-action@v2
-        with:
-          command: dns
-          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          type: A
-          name: "@"
-          content: 185.199.108.153
-          ttl: 300
-          proxied: false
-
-      - name: Switch to GitHub Pages (if down) - IP 2
-        if: env.status == 'down'
-        uses: cloudflare/cloudflare-action@v2
-        with:
-          command: dns
-          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          type: A
-          name: "@"
-          content: 185.199.109.153
-          ttl: 300
-          proxied: false
-
-      - name: Switch to GitHub Pages (if down) - IP 3
-        if: env.status == 'down'
-        uses: cloudflare/cloudflare-action@v2
-        with:
-          command: dns
-          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          type: A
-          name: "@"
-          content: 185.199.110.153
-          ttl: 300
-          proxied: false
-
-      - name: Switch to GitHub Pages (if down) - IP 4
-        if: env.status == 'down'
-        uses: cloudflare/cloudflare-action@v2
-        with:
-          command: dns
-          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          type: A
-          name: "@"
-          content: 185.199.111.153
-          ttl: 300
-          proxied: false
+        run: |
+          for ip in 185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153; do
+            curl -X PATCH "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              --data '[{"type":"A","name":"@","content":"'"$ip"'","ttl":300,"proxied":false}]'
+          done
