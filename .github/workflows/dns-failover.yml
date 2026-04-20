@@ -2,8 +2,8 @@ name: DNS Failover (Home ↔ GitHub)
 
 on:
   schedule:
-    - cron: '0 3 * * *'      # Once a day at 3 AM UTC — change if you want (e.g. every 6 hours: '0 */6 * * *')
-  workflow_dispatch:         # Allows manual run from GitHub
+    - cron: '0 3 * * *'      # Once per day at 3 AM UTC. Change to '0 */6 * * *' for every 6 hours
+  workflow_dispatch:
 
 jobs:
   failover:
