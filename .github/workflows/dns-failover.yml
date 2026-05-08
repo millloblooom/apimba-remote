@@ -19,7 +19,7 @@ jobs:
       - name: Check if home server is up
         id: health
         run: |
-          if curl -f -m 10 --resolve www.apimba.org:443:${{ env.home_ip }} https://www.apimba.org >/dev/null 2>&1; then
+          if curl -f -m 10 --resolve www.apimba.org:80:${{ env.home_ip }} https://www.apimba.org >/dev/null 2>&1; then
             echo "status=up" >> $GITHUB_ENV
             echo "✅ Home server is UP"
           else
