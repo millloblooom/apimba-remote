@@ -2,7 +2,7 @@ name: DNS Failover (Home ↔ GitHub)
 
 on:
   schedule:
-    - cron: '0 3 * * *'      # Once per day at 3 AM UTC. Change to '0 */6 * * *' for every 6 hours
+    - cron: '0 */6 * * *'      # Runs every 6 hours (you can change back to once a day later)
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Check if home server is up
         id: health
         run: |
-          if curl -f -m 10 --resolve www.apimba.org:80:${{ env.home_ip }} https://www.apimba.org >/dev/null 2>&1; then
+          if curl -f -m 10 --resolve www.apimba.org:80:${{ env.home_ip }} http://www.apimba.org >/dev/null 2>&1; then
             echo "status=up" >> $GITHUB_ENV
             echo "✅ Home server is UP"
           else
@@ -27,20 +27,33 @@ jobs:
             echo "❌ Home server is DOWN"
           fi
 
-      - name: Switch DNS to Home server (if up)
+      - name: Switch to Home server (if up)
         if: env.status == 'up'
         run: |
+          echo "🔄 Switching DNS to home server (${{ env.home_ip }})"
+          # Delete any existing GitHub records first
+          curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '[{"type":"A","name":"@","content":"185.199.108.153"}]' || true
+          # Set home IP for both @ and www
           curl -X PATCH "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records" \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            --data '[{"type":"A","name":"@","content":"'"${{ env.home_ip }}"'","ttl":300,"proxied":false}]'
+            --data '[{"type":"A","name":"@","content":"'"${{ env.home_ip }}"'","ttl":300,"proxied":false},{"type":"A","name":"www","content":"'"${{ env.home_ip }}"'","ttl":300,"proxied":false}]'
 
-      - name: Switch DNS to GitHub Pages (if down)
+      - name: Switch to GitHub Pages (if down)
         if: env.status == 'down'
         run: |
+          echo "🔄 Switching DNS to GitHub Pages"
           for ip in 185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153; do
             curl -X PATCH "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records" \
               -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
               -H "Content-Type: application/json" \
               --data '[{"type":"A","name":"@","content":"'"$ip"'","ttl":300,"proxied":false}]'
           done
+          # Set www CNAME
+          curl -X PATCH "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '[{"type":"CNAME","name":"www","content":"millloblooom.github.io","ttl":300,"proxied":false}]'
